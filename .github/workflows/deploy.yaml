@@ -1,27 +1,61 @@
-name: Deploy Static Site
+# name: Deploy Static Site
+#
+# on:
+#   push:
+#     branches:
+#       - main
+#
+# permissions:
+#   contents: write
+#
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#
+#     steps:
+#       - name: 📥 Checkout code
+#         uses: actions/checkout@v4
+#
+#       - name: 🚀 Deploy to GitHub Pages
+#         uses: peaceiris/actions-gh-pages@v4
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: ./
+#
+#       - name: 🔗 Fetch deployed URL
+#         run: |
+#           echo "🌐 Site deployed at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+#
+name: Setup GitHub Pages
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write
-
 jobs:
-  deploy:
+  setup-pages:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-
-      - name: 🔗 Fetch deployed URL
+      - name: 🔧 Enable GitHub Pages from main
         run: |
-          echo "🌐 Site deployed at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          gh api \
+            --method PUT \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/pages \
+            -f source.branch='main' \
+            -f source.path='/'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔗 Echo GitHub Pages URL
+        run: |
+          echo "🌐 GitHub Pages URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
