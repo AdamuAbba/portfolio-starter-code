@@ -39,14 +39,4 @@ This repository contains everything you need to complete your **portfolio assign
 3. **Do not touch any other file**
 4. Once you're done, commit your changes:
 
-### Using Github CLI
-
-```bash
-git add index.html styles/style.css SUBMISSION.md
-git commit -m "add a nice commit message here"
-git push
-```
-
-### Using Github Desktop Client
-
-TODO
+**Watch this video 👉:**
