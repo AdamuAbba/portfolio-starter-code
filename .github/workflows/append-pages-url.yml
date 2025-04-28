@@ -7,7 +7,7 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    # if: github.repository_owner != 'shytypes'
+    if: github.repository_owner != 'shytypes' && github.repository_owner != 'AdamuAbba'
 
     steps:
       - name: Checkout code
