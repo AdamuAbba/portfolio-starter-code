@@ -78,3 +78,9 @@ Because the repository automatically adds important info **after your first push
 Pulling updates prevents **errors** and keeps everything **up-to-date**! 🚀
 
 **Watch this video explaining everything 👉:** TODO
+
+
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-green?logo=github)](https://AdamuAbba.github.io/portfolio-starter-code/)
+
+
+🚀 **View the project here**: [https://AdamuAbba.github.io/portfolio-starter-code/](https://AdamuAbba.github.io/portfolio-starter-code/)
